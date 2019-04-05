@@ -1,4 +1,4 @@
-package com.grzegorz_malarski.tranings_notebook;
+package com.grzegorz_malarski.trainings_notebook;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
