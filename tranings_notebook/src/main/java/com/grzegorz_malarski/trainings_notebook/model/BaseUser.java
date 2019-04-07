@@ -1,7 +1,6 @@
 package com.grzegorz_malarski.trainings_notebook.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -12,12 +11,10 @@ import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "user")
-public class User {
+@MappedSuperclass
+public class BaseUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,6 +46,5 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private Role role;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL, optional = true)
-    private UserDetails userDetails;
+
 }
