@@ -10,6 +10,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 @Data
 @Builder
@@ -20,8 +23,19 @@ import java.time.LocalDate;
 public class AppUserAccount extends BaseUser {
 
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    private UserDetails userDetails;
+    @Column(name = "birth_date", nullable = true)
+    private LocalDate birthDate;
+
+    @Column(name = "weight", nullable = true)
+    private double weight;
+
+    @Column(name = "height", nullable = true)
+    private double height;
+
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
+
+
 
 
 }

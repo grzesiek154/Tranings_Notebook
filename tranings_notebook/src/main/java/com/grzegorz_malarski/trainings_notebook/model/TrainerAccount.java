@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -13,8 +15,19 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "trainers")
-public class TrainerAccount {
+public class TrainerAccount extends BaseUser{
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "appUserAccount", cascade = CascadeType.ALL, optional = true)
-    private TrainerDetails trainerDetails;
+
+    @Column(name = "specialization")
+    private String specialization;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
+
+    private List<Training> trainingsAdded = new ArrayList<>();
+
+    private List<Exercise> exercisesAdded = new ArrayList<>();
 }

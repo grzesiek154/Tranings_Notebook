@@ -14,16 +14,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
-public class BaseUser {
+public class BaseUser extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private Long id;
-
-    @Column(name = "name")
-    @NotEmpty(message = "Please provide your name")
-    private String name;
 
     @Column(name = "surname")
     @NotEmpty(message = "Please provide your surname")
