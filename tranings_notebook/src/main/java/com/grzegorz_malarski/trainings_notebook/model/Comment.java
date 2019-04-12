@@ -26,6 +26,4 @@ public class Comment extends BaseEntity {
     private String content;
 
 
-
-
 }
