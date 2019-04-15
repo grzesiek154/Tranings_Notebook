@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -17,15 +19,27 @@ public class Notebook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "notebook_id")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private BaseUser user;
 
 
-    private List<Training> trainings = new ArrayList<>();
+    @Column(name = "name")
+    private String name;
 
-    private List<Exercise> exercises = new ArrayList<>();
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "notebook_trainings",
+            joinColumns = @JoinColumn(name = "notebook_id"),
+            inverseJoinColumns = @JoinColumn(name = "training_id"))
+    private Set<Training> trainings = new HashSet<>();
 
+    @Column(name = "note")
     private String note;
 
 }

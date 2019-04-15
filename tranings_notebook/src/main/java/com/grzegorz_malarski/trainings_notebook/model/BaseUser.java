@@ -9,13 +9,24 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@MappedSuperclass
-public class BaseUser extends BaseEntity{
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "app_user")
+public class BaseUser {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "surname")
     @NotEmpty(message = "Please provide your surname")
@@ -38,5 +49,6 @@ public class BaseUser extends BaseEntity{
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private Role role;
 
-
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 }

@@ -13,11 +13,20 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "comments")
-public class Comment extends BaseEntity {
+public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     private BaseUser author;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     @Column(name = "create_date")
     private LocalDate createDate;

@@ -32,10 +32,8 @@ public class AppUserAccount extends BaseUser {
     @Column(name = "height", nullable = true)
     private double height;
 
-    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
-    private List<Comment> comments = new ArrayList<>();
-
-
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
+    private List<Notebook> notebooks = new ArrayList<>();
 
 
 }

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Builder
@@ -22,4 +24,16 @@ public class Exercise {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "reps")
+    private int reps;
+
+    @Column(name = "duration")
+    private double time;
+
+    @Column(name = "description")
+    private String description;
+
+    @ManyToMany(mappedBy = "exercises")
+    private Set<Training> trainings = new HashSet<>();
 }

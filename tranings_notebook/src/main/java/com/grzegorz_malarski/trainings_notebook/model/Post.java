@@ -16,10 +16,18 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "posts")
-public class Post extends BaseEntity{
+public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
+    private Long id;
+
+    @Column(name = "title")
+    private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     private TrainerAccount author;
 
     @Column(name = "create_date")
@@ -28,7 +36,6 @@ public class Post extends BaseEntity{
     @Column(name = "content")
     private String content;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id")
-    private List<Post> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 }
