@@ -10,9 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Data
 @Builder
@@ -35,5 +33,13 @@ public class AppUserAccount extends BaseUser {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private List<Notebook> notebooks = new ArrayList<>();
 
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "users_calendars",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "calendar_id"))
+    private Set<TrainingsCalendar> calendarsWithTrainings = new HashSet<>();
 
 }

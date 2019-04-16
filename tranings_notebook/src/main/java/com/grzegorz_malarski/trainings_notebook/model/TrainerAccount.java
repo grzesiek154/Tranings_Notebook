@@ -18,14 +18,24 @@ import java.util.List;
 public class TrainerAccount extends BaseUser{
 
 
-    @Column(name = "specialization")
+
     private String specialization;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Post> posts = new ArrayList<>();
 
 
-//    private List<Training> trainingsAdded = new ArrayList<>();
-//
-//    private List<Exercise> exercisesAdded = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "author",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Training> trainingsAdded = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "author",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Exercise> exercisesAdded = new ArrayList<>();
 }

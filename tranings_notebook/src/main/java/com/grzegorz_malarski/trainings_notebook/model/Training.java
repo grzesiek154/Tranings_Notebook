@@ -25,6 +25,10 @@ public class Training {
     @Column(name = "training_id")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private TrainerAccount author;
+
     @Column(name = "name")
     private String name;
 
@@ -42,4 +46,7 @@ public class Training {
             joinColumns = @JoinColumn(name = "training_id"),
             inverseJoinColumns = @JoinColumn(name = "exercise_id"))
     private Set<Exercise> exercises = new HashSet<>();
+
+    @ManyToMany(mappedBy = "trainings")
+    private Set<TrainingsCalendar> trainingsInCalendar = new HashSet<>();
 }

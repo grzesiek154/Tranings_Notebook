@@ -1,22 +1,47 @@
 package com.grzegorz_malarski.trainings_notebook.model;
 
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "calendar")
 public class TrainingsCalendar {
 
-    private static List<Month> months = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "calendar_id")
+    private Long id;
 
-    private static final Month[] MONTHS = Month.values();
+    @Column(name = "month")
+    private String month;
 
-    public static void main(String[] args) {
-        System.out.println();
+    @Column(name = "year")
+    private int year;
 
-        for (int i = 0; i <= 11; i++) {
-            System.out.println(MONTHS[i]);
-        }
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "calendar_trainings",
+            joinColumns = @JoinColumn(name = "calendar_id"),
+            inverseJoinColumns = @JoinColumn(name = "training_id"))
+    private Set<Training> trainings = new HashSet<>();
+
+    @ManyToMany(mappedBy = "calendarsWithTrainings")
+    private Set<AppUserAccount> users = new HashSet<>();
+
+    //private static final Month[] MONTHS = Month.values();
 
 
-    }
 }

@@ -25,6 +25,10 @@ public class Exercise {
     @Column(name = "name")
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private TrainerAccount author;
+
     @Column(name = "reps")
     private int reps;
 
