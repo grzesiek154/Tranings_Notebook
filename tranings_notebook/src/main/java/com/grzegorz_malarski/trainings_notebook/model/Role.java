@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @Builder
@@ -21,7 +22,7 @@ public class Role {
     private Long id;
 
 
-    @Column(name = "role")
+    @NotBlank
     private String role;
 
     @OneToOne(fetch = FetchType.LAZY)

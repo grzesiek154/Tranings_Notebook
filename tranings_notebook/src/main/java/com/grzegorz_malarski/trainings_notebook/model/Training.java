@@ -7,9 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -29,10 +28,10 @@ public class Training {
     @JoinColumn(name = "user_id")
     private TrainerAccount author;
 
-    @Column(name = "name")
+    @NotBlank
     private String name;
 
-    @Column(name = "description")
+
     private String description;
 
     @ManyToMany(mappedBy = "trainings")

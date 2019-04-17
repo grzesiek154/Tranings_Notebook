@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,20 +23,20 @@ public class Exercise {
     @Column(name = "exercise_id")
     private Long id;
 
-    @Column(name = "name")
+    @NotBlank
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private TrainerAccount author;
 
-    @Column(name = "reps")
+
     private int reps;
 
-    @Column(name = "duration")
+
     private double time;
 
-    @Column(name = "description")
+    @NotBlank
     private String description;
 
     @ManyToMany(mappedBy = "exercises")

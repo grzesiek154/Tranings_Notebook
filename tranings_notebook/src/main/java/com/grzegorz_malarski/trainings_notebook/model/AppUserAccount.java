@@ -17,17 +17,17 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "app_users")
 public class AppUserAccount extends BaseUser {
 
 
     @Column(name = "birth_date", nullable = true)
     private LocalDate birthDate;
 
-    @Column(name = "weight", nullable = true)
+
     private double weight;
 
-    @Column(name = "height", nullable = true)
+
     private double height;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")

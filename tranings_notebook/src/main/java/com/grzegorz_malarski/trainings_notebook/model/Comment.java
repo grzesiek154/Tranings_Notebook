@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 
@@ -28,10 +29,11 @@ public class Comment {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @NotBlank
     @Column(name = "create_date")
     private LocalDate createDate;
 
-    @Column(name = "content")
+    @NotBlank
     private String content;
 
 

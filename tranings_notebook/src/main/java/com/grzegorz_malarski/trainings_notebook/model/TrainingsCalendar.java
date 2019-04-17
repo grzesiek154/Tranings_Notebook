@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "calendar")
+@Table(name = "calendars")
 public class TrainingsCalendar {
 
     @Id
@@ -23,10 +24,10 @@ public class TrainingsCalendar {
     @Column(name = "calendar_id")
     private Long id;
 
-    @Column(name = "month")
+    @NotBlank
     private String month;
 
-    @Column(name = "year")
+    @NotBlank
     private int year;
 
     @ManyToMany(cascade = {

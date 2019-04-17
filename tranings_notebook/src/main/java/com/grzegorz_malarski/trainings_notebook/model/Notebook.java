@@ -5,9 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -27,7 +26,7 @@ public class Notebook {
     private BaseUser user;
 
 
-    @Column(name = "name")
+    @NotBlank
     private String name;
 
     @ManyToMany(cascade = {
@@ -39,7 +38,7 @@ public class Notebook {
             inverseJoinColumns = @JoinColumn(name = "training_id"))
     private Set<Training> trainings = new HashSet<>();
 
-    @Column(name = "note")
+
     private String note;
 
 }

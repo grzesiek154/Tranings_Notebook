@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +24,18 @@ public class Post {
     @Column(name = "post_id")
     private Long id;
 
-    @Column(name = "title")
+    @NotBlank
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private TrainerAccount author;
 
+    @NotBlank
     @Column(name = "create_date")
     private LocalDate createDate;
 
-    @Column(name = "content")
+    @NotBlank
     private String content;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
