@@ -26,5 +26,5 @@ public class Role {
     private String role;
 
     @OneToOne(fetch = FetchType.LAZY)
-    private BaseUser user;
+    private BaseAppAccount user;
 }

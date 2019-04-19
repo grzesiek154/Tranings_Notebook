@@ -23,7 +23,7 @@ public class Notebook {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private BaseUser user;
+    private BaseAppAccount user;
 
 
     @NotBlank

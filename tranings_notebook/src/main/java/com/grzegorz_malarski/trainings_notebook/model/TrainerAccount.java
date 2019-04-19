@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "trainers")
-public class TrainerAccount extends BaseUser{
+public class TrainerAccount extends BaseAppAccount {
 
 
 

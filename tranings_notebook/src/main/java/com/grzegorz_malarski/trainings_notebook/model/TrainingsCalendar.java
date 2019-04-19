@@ -40,7 +40,7 @@ public class TrainingsCalendar {
     private Set<Training> trainings = new HashSet<>();
 
     @ManyToMany(mappedBy = "calendarsWithTrainings")
-    private Set<AppUserAccount> users = new HashSet<>();
+    private Set<UserAccount> users = new HashSet<>();
 
     //private static final Month[] MONTHS = Month.values();
 
