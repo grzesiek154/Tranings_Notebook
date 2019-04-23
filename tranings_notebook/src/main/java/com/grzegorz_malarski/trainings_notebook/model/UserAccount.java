@@ -1,6 +1,5 @@
 package com.grzegorz_malarski.trainings_notebook.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
+
 @Data
-@Builder
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Entity
 @Table(name = "app_users")
@@ -27,7 +26,7 @@ public class UserAccount extends BaseAppAccount {
     private double height;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
-    private List<Notebook> notebooks = new ArrayList<>();
+    private List<Notebook> notebooks;
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
@@ -36,6 +35,16 @@ public class UserAccount extends BaseAppAccount {
     @JoinTable(name = "users_calendars",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "calendar_id"))
-    private Set<TrainingsCalendar> calendarsWithTrainings = new HashSet<>();
+    private Set<TrainingsCalendar> calendarsWithTrainings;
+
+
+
+
+    public UserAccount(String name, String surname, String email, String password){
+            super(name,surname,email,password);
+            this.notebooks = new ArrayList<>();
+            this.calendarsWithTrainings = new HashSet<>();
+
+    }
 
 }

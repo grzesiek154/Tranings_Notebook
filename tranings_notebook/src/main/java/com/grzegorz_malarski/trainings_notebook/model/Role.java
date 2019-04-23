@@ -23,8 +23,17 @@ public class Role {
 
 
     @NotBlank
-    private String role;
+    private Role.Type role;
 
     @OneToOne(fetch = FetchType.LAZY)
     private BaseAppAccount user;
+
+     enum  Type {
+
+        USER, TRAINER, ADMIN;
+    }
+
+    public Role(Role.Type type) {
+         this.role = type;
+    }
 }

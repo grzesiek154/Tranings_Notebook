@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -22,7 +21,7 @@ public class TrainerAccount extends BaseAppAccount {
     private String specialization;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Post> posts = new ArrayList<>();
+    private List<Post> posts;
 
 
     @OneToMany(
@@ -30,12 +29,21 @@ public class TrainerAccount extends BaseAppAccount {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Training> trainingsAdded = new ArrayList<>();
+    private List<Training> trainingsAdded;
 
     @OneToMany(
             mappedBy = "author",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Exercise> exercisesAdded = new ArrayList<>();
+    private List<Exercise> exercisesAdded;
+
+
+
+    public TrainerAccount(String name, String surname, String email, String password) {
+        super(name,surname,email,password);
+        this.posts = new ArrayList<>();
+        this.trainingsAdded = new ArrayList<>();
+        this.exercisesAdded = new ArrayList<>();
+    }
 }
