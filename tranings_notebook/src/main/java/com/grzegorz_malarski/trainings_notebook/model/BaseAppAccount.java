@@ -5,12 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,20 +47,28 @@ public class BaseAppAccount {
     private String password;
 
     @Column(name = "join_date")
-    private LocalDate joinDate;
+    private LocalDate joinDate  = LocalDate.now();
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role = Role.USER;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
+
+    public BaseAppAccount(String name ,String surname ,String email ,String password, Role role) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public BaseAppAccount(String name ,String surname ,String email ,String password) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.joinDate = LocalDate.now();
-        this.role = new Role(Role.Type.USER);
+
     }
 }

@@ -40,10 +40,10 @@ public class TrainerAccount extends BaseAppAccount {
 
 
 
-    public TrainerAccount(String name, String surname, String email, String password) {
-        super(name,surname,email,password);
-        this.posts = new ArrayList<>();
-        this.trainingsAdded = new ArrayList<>();
-        this.exercisesAdded = new ArrayList<>();
-    }
+//    public TrainerAccount(String name, String surname, String email, String password) {
+//        super(name,surname,email,password);
+//        this.posts = new ArrayList<>();
+//        this.trainingsAdded = new ArrayList<>();
+//        this.exercisesAdded = new ArrayList<>();
+//    }
 }

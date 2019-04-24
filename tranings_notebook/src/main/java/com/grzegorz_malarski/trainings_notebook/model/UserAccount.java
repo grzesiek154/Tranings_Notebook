@@ -1,6 +1,6 @@
 package com.grzegorz_malarski.trainings_notebook.model;
 
-import lombok.Builder;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 @Data
-
 @NoArgsConstructor
 @Entity
 @Table(name = "app_users")
@@ -40,11 +39,11 @@ public class UserAccount extends BaseAppAccount {
 
 
 
-    public UserAccount(String name, String surname, String email, String password){
-            super(name,surname,email,password);
-            this.notebooks = new ArrayList<>();
-            this.calendarsWithTrainings = new HashSet<>();
-
-    }
+//    public UserAccount(String name, String surname, String email, String password){
+//            super(name,surname,email,password);
+//            this.notebooks = new ArrayList<>();
+//            this.calendarsWithTrainings = new HashSet<>();
+//
+//    }
 
 }
