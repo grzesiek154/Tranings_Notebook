@@ -14,10 +14,10 @@ import java.util.*;
 @Table(name = "app_users")
 public class UserAccount extends BaseAppAccount {
 
+    private String nickname;
 
     @Column(name = "birth_date", nullable = true)
     private LocalDate birthDate;
-
 
     private double weight;
 
@@ -25,7 +25,7 @@ public class UserAccount extends BaseAppAccount {
     private double height;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
-    private List<Notebook> notebooks;
+    private List<Notebook> notebooks = new ArrayList<>();
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
@@ -34,7 +34,7 @@ public class UserAccount extends BaseAppAccount {
     @JoinTable(name = "users_calendars",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "calendar_id"))
-    private Set<TrainingsCalendar> calendarsWithTrainings;
+    private Set<TrainingsCalendar> calendarsWithTrainings = new HashSet<>();
 
 
 

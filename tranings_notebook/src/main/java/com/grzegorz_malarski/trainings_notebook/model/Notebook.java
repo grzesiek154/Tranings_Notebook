@@ -17,13 +17,13 @@ import java.util.Set;
 public class Notebook {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "notebook_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private BaseAppAccount user;
+    private UserAccount user;
 
 
     @NotBlank

@@ -2,12 +2,10 @@ package com.grzegorz_malarski.trainings_notebook.model;
 
 import com.grzegorz_malarski.trainings_notebook.repositories.TrainerAccountRepository;
 import com.grzegorz_malarski.trainings_notebook.repositories.UserAccountRepository;
+import com.grzegorz_malarski.trainings_notebook.services.implementation.ApplicationService;
+import com.grzegorz_malarski.trainings_notebook.services.implementation.UserAccountServiceImpl;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.util.Optional;
 
 
 @Component
@@ -16,10 +14,14 @@ public class DBSeeder implements CommandLineRunner {
 
     private final UserAccountRepository userAccountRepository;
     private final TrainerAccountRepository trainerAccountRepository;
+    private final UserAccountServiceImpl userAccountService;
+    private final ApplicationService applicationService;
 
-    public DBSeeder(UserAccountRepository userAccountRepository, TrainerAccountRepository trainerAccountRepository) {
+    public DBSeeder(UserAccountRepository userAccountRepository, TrainerAccountRepository trainerAccountRepository, UserAccountServiceImpl userAccountService, ApplicationService applicationService) {
         this.userAccountRepository = userAccountRepository;
         this.trainerAccountRepository = trainerAccountRepository;
+        this.userAccountService = userAccountService;
+        this.applicationService = applicationService;
     }
 
     @Override
@@ -28,11 +30,20 @@ public class DBSeeder implements CommandLineRunner {
 
 
             UserAccount user1 = new UserAccount();
+            user1.setNickname("janek123");
             user1.setName("Jan");
             user1.setSurname("Kowalski");
             user1.setEmail("jan@gmail.com");
             user1.setPassword("asdzxcqwe");
-            userAccountRepository.save(user1);
+            applicationService.addNewUserAccount(user1);
+
+//            UserAccount user3 = new UserAccount();
+//            user3.setNickname("janek123");
+//            user3.setName("Jan");
+//            user3.setSurname("Kowalski");
+//            user3.setEmail("jan@gmail.com");
+//            user3.setPassword("asdzxcqwe");
+//            userAccountService.addNewUserAccount(user3);
 
             UserAccount user2 = new UserAccount();
             user2.setName("Adam");
@@ -43,12 +54,8 @@ public class DBSeeder implements CommandLineRunner {
 
 
             Notebook user1Notebook = new Notebook();
-            user1Notebook.setName("Chest Trainings");
-
-
-
-
-
+            user1Notebook.setName("Chest trainings");
+            userAccountService.addNewNotebook(user1, user1Notebook);
 
     }
 

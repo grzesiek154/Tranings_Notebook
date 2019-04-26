@@ -1,10 +1,14 @@
 package com.grzegorz_malarski.trainings_notebook.services.implementation;
 
+
 import com.grzegorz_malarski.trainings_notebook.exceptions.NotFoundException;
+import com.grzegorz_malarski.trainings_notebook.model.Notebook;
 import com.grzegorz_malarski.trainings_notebook.model.UserAccount;
+import com.grzegorz_malarski.trainings_notebook.repositories.NotebookRepository;
 import com.grzegorz_malarski.trainings_notebook.repositories.UserAccountRepository;
 import com.grzegorz_malarski.trainings_notebook.services.UserAccountService;
 import org.springframework.stereotype.Service;
+
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -15,9 +19,11 @@ public class UserAccountServiceImpl implements UserAccountService {
 
 
     private final UserAccountRepository userAccountRepository;
+    private final NotebookRepository notebookRepository;
 
-    public UserAccountServiceImpl(UserAccountRepository userAccountRepository) {
+    public UserAccountServiceImpl(UserAccountRepository userAccountRepository, NotebookRepository notebookRepository) {
         this.userAccountRepository = userAccountRepository;
+        this.notebookRepository = notebookRepository;
     }
 
 
@@ -55,5 +61,25 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public void deleteById(Long aLong) {
         userAccountRepository.deleteById(aLong);
+    }
+
+
+    @Override
+    public UserAccount findByNickname(String nickname) {
+
+        return userAccountRepository.findByNickname(nickname).get();
+    }
+
+    @Override
+    public UserAccount findByEmail(String email) {
+
+        return userAccountRepository.findByEmail(email).get();
+    }
+
+
+    public void addNewNotebook(UserAccount userAccount,Notebook notebook) {
+
+        userAccount.getNotebooks().add(notebook);
+        notebookRepository.save(notebook);
     }
 }
