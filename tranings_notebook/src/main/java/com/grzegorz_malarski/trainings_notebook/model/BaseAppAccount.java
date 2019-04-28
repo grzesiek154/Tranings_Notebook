@@ -21,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@Table(name = "base_app_user")
+@Table(name = "base_app_accounts")
 public class BaseAppAccount {
 
     @Id

@@ -1,7 +1,9 @@
 package com.grzegorz_malarski.trainings_notebook.services.implementation;
 
 import com.grzegorz_malarski.trainings_notebook.exceptions.NotFoundException;
+import com.grzegorz_malarski.trainings_notebook.model.Exercise;
 import com.grzegorz_malarski.trainings_notebook.model.Training;
+import com.grzegorz_malarski.trainings_notebook.repositories.ExerciseRepository;
 import com.grzegorz_malarski.trainings_notebook.repositories.TrainingRepository;
 import com.grzegorz_malarski.trainings_notebook.services.TrainingService;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,11 @@ import java.util.Set;
 public class TrainingServiceImpl implements TrainingService {
 
    private final TrainingRepository trainingRepository;
+    private final ExerciseRepository exerciseRepository;
 
-    public TrainingServiceImpl(TrainingRepository trainingRepository) {
+    public TrainingServiceImpl(TrainingRepository trainingRepository, ExerciseRepository exerciseRepository) {
         this.trainingRepository = trainingRepository;
+        this.exerciseRepository = exerciseRepository;
     }
 
     @Override
@@ -52,6 +56,12 @@ public class TrainingServiceImpl implements TrainingService {
     @Override
     public void deleteById(Long aLong) {
         trainingRepository.deleteById(aLong);
+    }
+
+    public void addNewExercise(Training training, Exercise exercise) {
+
+        training.getExercises().add(exercise);
+        exerciseRepository.save(exercise);
     }
 
 

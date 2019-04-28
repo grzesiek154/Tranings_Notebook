@@ -16,7 +16,7 @@ public class UserAccount extends BaseAppAccount {
 
     private String nickname;
 
-    @Column(name = "birth_date", nullable = true)
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     private double weight;

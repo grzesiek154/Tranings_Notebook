@@ -37,6 +37,9 @@ public class DBSeeder implements CommandLineRunner {
             user1.setPassword("asdzxcqwe");
             applicationService.addNewUserAccount(user1);
 
+        user1.setNickname("Janusz");
+        applicationService.addNewUserAccount(user1);
+
 //            UserAccount user3 = new UserAccount();
 //            user3.setNickname("janek123");
 //            user3.setName("Jan");
@@ -46,6 +49,7 @@ public class DBSeeder implements CommandLineRunner {
 //            userAccountService.addNewUserAccount(user3);
 
             UserAccount user2 = new UserAccount();
+        user2.setNickname("adam987");
             user2.setName("Adam");
             user2.setSurname("Nowak");
             user2.setEmail("adam@gmail.com");

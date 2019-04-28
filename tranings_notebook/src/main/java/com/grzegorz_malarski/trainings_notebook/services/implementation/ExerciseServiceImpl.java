@@ -2,6 +2,7 @@ package com.grzegorz_malarski.trainings_notebook.services.implementation;
 
 import com.grzegorz_malarski.trainings_notebook.exceptions.NotFoundException;
 import com.grzegorz_malarski.trainings_notebook.model.Exercise;
+import com.grzegorz_malarski.trainings_notebook.model.Training;
 import com.grzegorz_malarski.trainings_notebook.repositories.ExerciseRepository;
 import com.grzegorz_malarski.trainings_notebook.services.ExerciseService;
 import org.springframework.stereotype.Service;
@@ -53,4 +54,6 @@ public class ExerciseServiceImpl implements ExerciseService {
     public void deleteById(Long aLong) {
         exerciseRepository.deleteById(aLong);
     }
+
+
 }

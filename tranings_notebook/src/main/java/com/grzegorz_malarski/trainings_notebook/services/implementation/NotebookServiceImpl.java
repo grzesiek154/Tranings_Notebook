@@ -2,8 +2,10 @@ package com.grzegorz_malarski.trainings_notebook.services.implementation;
 
 import com.grzegorz_malarski.trainings_notebook.exceptions.NotFoundException;
 import com.grzegorz_malarski.trainings_notebook.model.Notebook;
+import com.grzegorz_malarski.trainings_notebook.model.Training;
 import com.grzegorz_malarski.trainings_notebook.repositories.NotebookRepository;
 import com.grzegorz_malarski.trainings_notebook.services.NotebookService;
+import com.grzegorz_malarski.trainings_notebook.repositories.TrainingRepository;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -12,9 +14,11 @@ import java.util.Set;
 public class NotebookServiceImpl implements NotebookService {
 
     private final NotebookRepository notebookRepository;
+    private final TrainingRepository trainingRepository;
 
-    public NotebookServiceImpl(NotebookRepository notebookRepository) {
+    public NotebookServiceImpl(NotebookRepository notebookRepository, TrainingRepository trainingRepository) {
         this.notebookRepository = notebookRepository;
+        this.trainingRepository = trainingRepository;
     }
 
     @Override
@@ -50,5 +54,11 @@ public class NotebookServiceImpl implements NotebookService {
     @Override
     public void deleteById(Long aLong) {
         notebookRepository.deleteById(aLong);
+    }
+
+    public void addTraining(Notebook notebook, Training training) {
+
+        notebook.getTrainings().add(training);
+        trainingRepository.save(training);
     }
 }

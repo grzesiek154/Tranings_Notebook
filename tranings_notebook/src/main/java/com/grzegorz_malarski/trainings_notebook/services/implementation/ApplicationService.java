@@ -4,10 +4,14 @@ import com.grzegorz_malarski.trainings_notebook.exceptions.EmailNotUniqueExcepti
 import com.grzegorz_malarski.trainings_notebook.exceptions.NicknameNotUniqueException;
 import com.grzegorz_malarski.trainings_notebook.model.UserAccount;
 import com.grzegorz_malarski.trainings_notebook.repositories.UserAccountRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * class which has methods more general for whole application
+ */
 @Service
 public class ApplicationService {
 
@@ -34,6 +38,15 @@ public class ApplicationService {
         }
     }
 
+    public boolean checkWhetherEntityCanBeAdded(CrudRepository repository, Long id) {
+
+        Optional<Object> optional = repository.findById(id);
+        if (optional.isEmpty()) {
+            return true;
+
+        }
+        return false;
+    }
 
     public void addNewUserAccount(UserAccount userAccount) throws EmailNotUniqueException, NicknameNotUniqueException{
 
