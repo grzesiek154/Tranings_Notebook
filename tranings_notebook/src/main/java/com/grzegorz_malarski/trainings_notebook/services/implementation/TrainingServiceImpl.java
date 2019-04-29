@@ -45,6 +45,11 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
+    public Training findByName(String name) {
+        return null;
+    }
+
+    @Override
     public Training save(Training object) {
         return trainingRepository.save(object);
     }
@@ -66,9 +71,9 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
 
-    @Override
-    public Training findByName(String name) {
-        Training training = trainingRepository.findByName(name);
-        return training;
-    }
+//    @Override
+//    public Training findByName(String name) {
+//        Training training = trainingRepository.findByName(name);
+//        return training;
+//    }
 }

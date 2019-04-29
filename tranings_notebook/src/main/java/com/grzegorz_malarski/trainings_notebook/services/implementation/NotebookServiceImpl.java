@@ -46,6 +46,11 @@ public class NotebookServiceImpl implements NotebookService {
     }
 
     @Override
+    public Notebook findByName(String name) {
+        return null;
+    }
+
+    @Override
     public Notebook save(Notebook object) {
         return notebookRepository.save(object);
     }
@@ -66,7 +71,7 @@ public class NotebookServiceImpl implements NotebookService {
             notebook.getTrainings().add(training);
             trainingRepository.save(training);
         } else {
-            throw new RuntimeException("Training with id " +)
+            throw new RuntimeException("Training with id ");
         }
 
     }
