@@ -1,5 +1,7 @@
-package com.grzegorz_malarski.trainings_notebook.model;
+package com.grzegorz_malarski.trainings_notebook.develop;
 
+import com.grzegorz_malarski.trainings_notebook.model.Notebook;
+import com.grzegorz_malarski.trainings_notebook.model.UserAccount;
 import com.grzegorz_malarski.trainings_notebook.repositories.TrainerAccountRepository;
 import com.grzegorz_malarski.trainings_notebook.repositories.UserAccountRepository;
 import com.grzegorz_malarski.trainings_notebook.services.implementation.ApplicationService;

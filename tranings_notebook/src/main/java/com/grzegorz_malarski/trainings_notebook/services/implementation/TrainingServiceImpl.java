@@ -6,6 +6,7 @@ import com.grzegorz_malarski.trainings_notebook.model.Training;
 import com.grzegorz_malarski.trainings_notebook.repositories.ExerciseRepository;
 import com.grzegorz_malarski.trainings_notebook.repositories.TrainingRepository;
 import com.grzegorz_malarski.trainings_notebook.services.TrainingService;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 
@@ -65,4 +66,9 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
 
+    @Override
+    public Training findByName(String name) {
+        Training training = trainingRepository.findByName(name);
+        return training;
+    }
 }

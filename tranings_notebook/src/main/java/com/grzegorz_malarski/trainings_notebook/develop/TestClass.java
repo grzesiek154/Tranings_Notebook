@@ -1,4 +1,4 @@
-package com.grzegorz_malarski.trainings_notebook.exceptions;
+package com.grzegorz_malarski.trainings_notebook.develop;
 
 public class TestClass {
 
