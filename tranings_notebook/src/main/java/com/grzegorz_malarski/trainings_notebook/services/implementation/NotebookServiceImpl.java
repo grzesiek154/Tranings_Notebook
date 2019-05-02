@@ -3,10 +3,11 @@ package com.grzegorz_malarski.trainings_notebook.services.implementation;
 import com.grzegorz_malarski.trainings_notebook.exceptions.NotFoundException;
 import com.grzegorz_malarski.trainings_notebook.model.Notebook;
 import com.grzegorz_malarski.trainings_notebook.model.Training;
+import com.grzegorz_malarski.trainings_notebook.model.UserAccount;
 import com.grzegorz_malarski.trainings_notebook.repositories.NotebookRepository;
+import com.grzegorz_malarski.trainings_notebook.repositories.UserAccountRepository;
 import com.grzegorz_malarski.trainings_notebook.services.NotebookService;
 import com.grzegorz_malarski.trainings_notebook.repositories.TrainingRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -18,11 +19,13 @@ public class NotebookServiceImpl implements NotebookService {
 
     private final NotebookRepository notebookRepository;
     private final TrainingRepository trainingRepository;
+    private final UserAccountRepository userAccountRepository;
 
 
-    public NotebookServiceImpl(NotebookRepository notebookRepository, TrainingRepository trainingRepository) {
+    public NotebookServiceImpl(NotebookRepository notebookRepository, TrainingRepository trainingRepository, UserAccountRepository userAccountRepository) {
         this.notebookRepository = notebookRepository;
         this.trainingRepository = trainingRepository;
+        this.userAccountRepository = userAccountRepository;
     }
 
     @Override
@@ -52,6 +55,9 @@ public class NotebookServiceImpl implements NotebookService {
 
     @Override
     public Notebook save(Notebook object) {
+
+//       Optional<UserAccount> userAccountOptional = userAccountRepository.findById()
+
         return notebookRepository.save(object);
     }
 

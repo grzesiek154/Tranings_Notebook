@@ -30,6 +30,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public Post findByTitle(String title) {
+        return null;
+    }
+
+    @Override
     public Post findById(Long aLong) {
         Optional<Post> userAccountOptional = postRepository.findById(aLong);
 

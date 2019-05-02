@@ -41,4 +41,10 @@ public class Notebook {
 
     private String note;
 
+    public Notebook addTraining(Training training) {
+
+        this.trainings.add(training);
+
+        return this;
+    }
 }

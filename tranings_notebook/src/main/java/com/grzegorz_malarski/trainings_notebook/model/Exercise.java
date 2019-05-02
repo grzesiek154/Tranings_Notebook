@@ -41,4 +41,13 @@ public class Exercise {
 
     @ManyToMany(mappedBy = "exercises")
     private Set<Training> trainings = new HashSet<>();
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "exercises_category",
+            joinColumns = @JoinColumn(name = "exercise_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<ExerciseCategory> categories = new HashSet<>();
 }

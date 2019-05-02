@@ -36,6 +36,12 @@ public class UserAccount extends BaseAppAccount {
             inverseJoinColumns = @JoinColumn(name = "calendar_id"))
     private Set<TrainingsCalendar> calendarsWithTrainings = new HashSet<>();
 
+    public UserAccount addNotebook(Notebook notebook) {
+        notebooks.add(notebook);
+        notebook.setUser(this);
+
+        return this;
+    }
 
 
 

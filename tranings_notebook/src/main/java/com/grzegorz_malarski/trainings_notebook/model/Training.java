@@ -1,18 +1,15 @@
 package com.grzegorz_malarski.trainings_notebook.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -36,6 +33,15 @@ public class Training {
 
     @ManyToMany(mappedBy = "trainings")
     private Set<Notebook> notebooks = new HashSet<>();
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "training_category",
+            joinColumns = @JoinColumn(name = "training_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<TrainingCategory> categories = new HashSet<>();
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
