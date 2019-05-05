@@ -39,11 +39,9 @@ public class TrainerAccount extends BaseAppAccount {
     private List<Exercise> exercisesAdded;
 
 
-
-//    public TrainerAccount(String name, String surname, String email, String password) {
-//        super(name,surname,email,password);
-//        this.posts = new ArrayList<>();
-//        this.trainingsAdded = new ArrayList<>();
-//        this.exercisesAdded = new ArrayList<>();
-//    }
+    public TrainerAccount addTraining(Training training) {
+        training.setAuthor(this);
+        this.trainingsAdded.add(training);
+        return this;
+    }
 }

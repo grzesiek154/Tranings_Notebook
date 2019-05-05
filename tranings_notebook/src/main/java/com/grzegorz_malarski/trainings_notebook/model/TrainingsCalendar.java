@@ -40,9 +40,13 @@ public class TrainingsCalendar {
     private Set<Training> trainings = new HashSet<>();
 
     @ManyToMany(mappedBy = "calendarsWithTrainings")
-    private Set<UserAccount> users = new HashSet<>();
+    private UserAccount user;
 
-    //private static final Month[] MONTHS = Month.values();
+    public TrainingsCalendar addTrainingToCalendar(Training training) {
+        training.getTrainingsInCalendar().add(this);
+        this.trainings.add(training);
 
+        return this;
+    }
 
 }

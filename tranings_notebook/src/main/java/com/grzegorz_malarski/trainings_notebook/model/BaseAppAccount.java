@@ -64,11 +64,17 @@ public class BaseAppAccount {
         this.role = role;
     }
 
-    public BaseAppAccount(String name ,String surname ,String email ,String password) {
+    public BaseAppAccount(String name , String surname , String email , String password) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
 
+    }
+
+    public BaseAppAccount addComent(Comment comment) {
+        comment.setAuthor(this);
+        this.comments.add(comment);
+        return this;
     }
 }

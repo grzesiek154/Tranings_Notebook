@@ -50,4 +50,10 @@ public class Exercise {
             joinColumns = @JoinColumn(name = "exercise_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<ExerciseCategory> categories = new HashSet<>();
+
+    public Exercise addCategory(ExerciseCategory exerciseCategory) {
+        exerciseCategory.getExercises().add(this);
+        categories.add(exerciseCategory);
+        return this;
+    }
 }
