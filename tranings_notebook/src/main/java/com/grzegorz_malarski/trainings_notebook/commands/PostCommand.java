@@ -13,9 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 public class PostCommand {
 
+    @NotBlank
     private Long id;
+    @NotBlank
     private String title;
-    private TrainerAccountCommand author;
+    @NotBlank
+    private Long authorId;
     @NotBlank
     private LocalDate createDate;
     @NotBlank

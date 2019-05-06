@@ -29,14 +29,14 @@ public class TrainerAccount extends BaseAppAccount {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Training> trainingsAdded;
+    private List<Training> trainingsAdded = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "author",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Exercise> exercisesAdded;
+    private List<Exercise> exercisesAdded = new ArrayList<>();
 
 
     public TrainerAccount addTraining(Training training) {

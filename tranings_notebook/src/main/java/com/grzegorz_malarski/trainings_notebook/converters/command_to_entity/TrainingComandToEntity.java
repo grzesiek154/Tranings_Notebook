@@ -10,9 +10,14 @@ import org.springframework.stereotype.Component;
 public class TrainingComandToEntity implements Converter<TrainingCommand, Training> {
 
     private final TrainingCategoryCommandToEntity trainingCategoryCommandConverter;
+    private final ExerciseCommandToEntity exerciseCommandConverter;
+    private final TrainingsCalendarCommandToEntity trainingsCalendarCommandConverter;
 
-    public TrainingComandToEntity(TrainingCategoryCommandToEntity trainingCategoryCommandConverter) {
+    public TrainingComandToEntity(TrainingCategoryCommandToEntity trainingCategoryCommandConverter, ExerciseCommandToEntity exerciseCommandConverter, TrainingsCalendarCommandToEntity trainingsCalendarCommandConverter) {
         this.trainingCategoryCommandConverter = trainingCategoryCommandConverter;
+        this.exerciseCommandConverter = exerciseCommandConverter;
+
+        this.trainingsCalendarCommandConverter = trainingsCalendarCommandConverter;
     }
 
     @Override
@@ -30,6 +35,12 @@ public class TrainingComandToEntity implements Converter<TrainingCommand, Traini
 
         if (source.getCategories() != null && source.getCategories().size() > 0) {
             source.getCategories().forEach(trainingCategoryCommand -> training.getCategories().add(trainingCategoryCommandConverter.convert(trainingCategoryCommand)));
+        }
+        if (source.getExercises() != null && source.getExercises().size() > 0) {
+            source.getExercises().forEach(exerciseCommand -> training.getExercises().add(exerciseCommandConverter.convert(exerciseCommand)));
+        }
+        if (source.getTrainingsCalendars() != null && source.getTrainingsCalendars().size() > 0) {
+            source.getTrainingsCalendars().forEach(trainingsCalendarCommand -> training.getTrainingsInCalendar().add(trainingsCalendarCommandConverter.convert(trainingsCalendarCommand)));
         }
         return training;
     }

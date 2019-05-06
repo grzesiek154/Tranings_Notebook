@@ -42,7 +42,7 @@ public class Notebook {
     private String note;
 
     public Notebook addTraining(Training training) {
-
+        training.getNotebooks().add(this);
         this.trainings.add(training);
 
         return this;

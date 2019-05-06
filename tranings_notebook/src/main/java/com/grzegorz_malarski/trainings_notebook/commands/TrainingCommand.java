@@ -19,4 +19,5 @@ public class TrainingCommand {
     private String description;
     private Set<TrainingCategoryCommand> categories;
     private Set<ExerciseCommand> exercises;
+    private Set<TrainingsCalendarCommand> trainingsCalendars;
 }

@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-public class UserAccountCommand {
+public class UserAccountCommand extends BaseAppAccountCommand {
 
     private String nickname;
     private LocalDate birthDate;

@@ -13,8 +13,11 @@ import java.util.Set;
 public class TrainingsCalendarCommand {
 
     private Long id;
+    private Long userId;
     @NotBlank
     private int year;
+    @NotBlank
+    private String month;
     private Set<TrainingCommand> trainings;
 
 
