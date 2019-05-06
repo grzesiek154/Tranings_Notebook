@@ -77,11 +77,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
 
-    public void addNewNotebook(UserAccount userAccount,Notebook notebook) {
 
-        userAccount.getNotebooks().add(notebook);
-        notebookRepository.save(notebook);
-    }
 
 
 }

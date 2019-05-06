@@ -64,10 +64,9 @@ public class TrainingServiceImpl implements TrainingService {
         trainingRepository.deleteById(aLong);
     }
 
-    public void addNewExercise(Training training, Exercise exercise) {
+    public void addExercise(Exercise exercise) {
 
-        training.getExercises().add(exercise);
-        exerciseRepository.save(exercise);
+        
     }
 
 
