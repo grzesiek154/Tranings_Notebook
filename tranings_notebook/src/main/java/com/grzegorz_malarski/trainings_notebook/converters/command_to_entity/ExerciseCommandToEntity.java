@@ -2,6 +2,7 @@ package com.grzegorz_malarski.trainings_notebook.converters.command_to_entity;
 
 import com.grzegorz_malarski.trainings_notebook.commands.ExerciseCommand;
 import com.grzegorz_malarski.trainings_notebook.model.Exercise;
+import com.grzegorz_malarski.trainings_notebook.model.TrainerAccount;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,9 @@ public class ExerciseCommandToEntity implements Converter<ExerciseCommand, Exerc
         final Exercise exercise = new Exercise();
         exercise.setId(source.getId());
         exercise.setName(source.getName());
+        TrainerAccount trainer = new TrainerAccount();
+        trainer.setId(source.getAuthorId());
+        exercise.setAuthor(trainer);
         if (source.getCategories() != null && source.getCategories().size() > 0) {
             source.getCategories().forEach(exerciseCategoryCommand -> exercise.getCategories().add(exerciseCategoryConverter.convert(exerciseCategoryCommand)));
         }

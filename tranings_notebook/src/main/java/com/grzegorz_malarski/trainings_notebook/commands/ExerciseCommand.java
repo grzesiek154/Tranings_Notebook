@@ -17,7 +17,7 @@ public class ExerciseCommand {
     private Long id;
     @NotBlank
     private String name;
-    private TrainerAccount author;
+    private Long authorId;
     private int reps;
     private double time;
     @NotBlank

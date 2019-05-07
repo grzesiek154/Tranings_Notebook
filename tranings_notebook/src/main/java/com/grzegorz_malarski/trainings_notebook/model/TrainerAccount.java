@@ -44,4 +44,10 @@ public class TrainerAccount extends BaseAppAccount {
         this.trainingsAdded.add(training);
         return this;
     }
+
+    public TrainerAccount addExercise(Exercise exercise) {
+        exercise.setAuthor(this);
+        this.exercisesAdded.add(exercise);
+        return this;
+    }
 }
