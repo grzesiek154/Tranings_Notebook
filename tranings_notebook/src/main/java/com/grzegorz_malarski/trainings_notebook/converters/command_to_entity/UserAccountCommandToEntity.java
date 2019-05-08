@@ -10,10 +10,12 @@ public class UserAccountCommandToEntity implements Converter<UserAccountCommand,
 
     private final NotebookCommandToEntity notebookCommandConverter;
     private final TrainingsCalendarCommandToEntity trainingsCalendarCommandConverter;
+    private final CommentCommandToEntity commentCommandConverter;
 
-    public UserAccountCommandToEntity(NotebookCommandToEntity notebookCommandConverter, TrainingsCalendarCommandToEntity trainingsCalendarCommandConverter) {
+    public UserAccountCommandToEntity(NotebookCommandToEntity notebookCommandConverter, TrainingsCalendarCommandToEntity trainingsCalendarCommandConverter, CommentCommandToEntity commentCommandConverter) {
         this.notebookCommandConverter = notebookCommandConverter;
         this.trainingsCalendarCommandConverter = trainingsCalendarCommandConverter;
+        this.commentCommandConverter = commentCommandConverter;
     }
 
     @Override
@@ -24,6 +26,12 @@ public class UserAccountCommandToEntity implements Converter<UserAccountCommand,
 
         UserAccount user = new UserAccount();
         user.setId(source.getId());
+        user.setName(source.getName());
+        user.setSurname(source.getSurname());
+        user.setJoinDate(source.getJoinDate());
+        user.setEmail(source.getEmail());
+        user.setPassword(source.getPassword());
+        user.setRole(source.getRole());
         user.setNickname(source.getNickname());
         user.setBirthDate(source.getBirthDate());
         user.setWeight(source.getWeight());
@@ -35,6 +43,9 @@ public class UserAccountCommandToEntity implements Converter<UserAccountCommand,
 
         if (source.getCalendarsWithTrainings() != null && source.getCalendarsWithTrainings().size() > 0) {
             source.getCalendarsWithTrainings().forEach(calendarCommand -> user.getCalendarsWithTrainings().add(trainingsCalendarCommandConverter.convert(calendarCommand)));
+        }
+        if (source.getComments() != null && source.getComments().size() > 0) {
+            source.getComments().forEach(commentCommand -> user.getComments().add(commentCommandConverter.convert(commentCommand)));
         }
 
         return user;
