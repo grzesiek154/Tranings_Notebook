@@ -61,7 +61,7 @@ public class DBSeeder implements CommandLineRunner {
 
             Notebook user1Notebook = new Notebook();
             user1Notebook.setName("Chest trainings");
-            userAccountService.addNewNotebook(user1, user1Notebook);
+
 
     }
 

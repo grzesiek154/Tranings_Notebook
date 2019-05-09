@@ -10,12 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExerciseCategoryToCommand implements Converter<ExerciseCategory, ExerciseCategoryCommand> {
 
-    private final ExerciseToCommand exerciseToCommandConverter;
-
-    public ExerciseCategoryToCommand(ExerciseToCommand exerciseToCommandConverter) {
-        this.exerciseToCommandConverter = exerciseToCommandConverter;
-    }
-
     @Synchronized
     @Nullable
     @Override
@@ -27,10 +21,6 @@ public class ExerciseCategoryToCommand implements Converter<ExerciseCategory, Ex
 
         ExerciseCategoryCommand exerciseCategoryCommand = new ExerciseCategoryCommand();
         exerciseCategoryCommand.setDescription(source.getDescription());
-
-        if(source.getExercises() != null && source.getExercises().size() > 0) {
-            source.getExercises().forEach(exercise -> exerciseCategoryCommand.getExercises().add(exerciseToCommandConverter.convert(exercise)));
-        }
 
 
         return exerciseCategoryCommand;

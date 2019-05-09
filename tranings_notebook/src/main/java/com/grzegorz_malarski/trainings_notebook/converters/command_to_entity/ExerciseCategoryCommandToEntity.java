@@ -11,11 +11,7 @@ import org.springframework.stereotype.Component;
 public class ExerciseCategoryCommandToEntity implements Converter<ExerciseCategoryCommand, ExerciseCategory> {
 
 
-    private final ExerciseCommandToEntity exerciseConverter;
 
-    public ExerciseCategoryCommandToEntity(ExerciseCommandToEntity exerciseConverter) {
-        this.exerciseConverter = exerciseConverter;
-    }
 
     @Override
     public ExerciseCategory convert(ExerciseCategoryCommand source) {
@@ -27,10 +23,6 @@ public class ExerciseCategoryCommandToEntity implements Converter<ExerciseCatego
         final ExerciseCategory exerciseCategory = new ExerciseCategory();
         exerciseCategory.setId(source.getId());
         exerciseCategory.setDescription(source.getDescription());
-
-        if (source.getExercises() != null && source.getExercises().size() > 0) {
-            source.getExercises().forEach(exerciseCommand -> exerciseCategory.getExercises().add(exerciseConverter.convert(exerciseCommand)));
-        }
 
         return exerciseCategory;
     }

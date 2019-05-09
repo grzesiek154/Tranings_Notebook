@@ -15,5 +15,5 @@ public class ExerciseCategoryCommand {
 
     private Long id;
     private String description;
-    private Set<ExerciseCommand> exercises = new HashSet<>();
+
 }

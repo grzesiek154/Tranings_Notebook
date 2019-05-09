@@ -33,6 +33,7 @@ public class CommentCommandToEntity implements Converter<CommentCommand, Comment
             comment.setPost(post);
             comment.setContent(source.getContent());
             post.addComment(comment);
+            comment.setCreateDate(source.getCreateDate());
         }
 
         return comment;
