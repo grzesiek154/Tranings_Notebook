@@ -1,7 +1,9 @@
 package com.grzegorz_malarski.trainings_notebook.services.implementation;
 
 import com.grzegorz_malarski.trainings_notebook.exceptions.NotFoundException;
+import com.grzegorz_malarski.trainings_notebook.model.Comment;
 import com.grzegorz_malarski.trainings_notebook.model.Post;
+import com.grzegorz_malarski.trainings_notebook.repositories.CommentRepository;
 import com.grzegorz_malarski.trainings_notebook.repositories.PostRepository;
 import com.grzegorz_malarski.trainings_notebook.services.PostService;
 import org.springframework.stereotype.Service;
@@ -13,11 +15,14 @@ import java.util.Set;
 @Service
 public class PostServiceImpl implements PostService {
 
+
     private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
 
 
-    public PostServiceImpl(PostRepository postRepository) {
+    public PostServiceImpl(PostRepository postRepository, CommentRepository commentRepository) {
         this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
     }
 
 
@@ -31,7 +36,13 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post findByTitle(String title) {
-        return null;
+        Optional<Post> postOptional = postRepository.findByTitle(title);
+        if(postOptional.isPresent()) {
+            return postOptional.get();
+        } else {
+            throw new NotFoundException("Post with title " + title + " not found.");
+        }
+
     }
 
     @Override
@@ -58,5 +69,17 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deleteById(Long aLong) {
         postRepository.deleteById(aLong);
+    }
+
+    @Override
+    public Comment addCommentToPost(Comment comment) {
+
+        if(comment != null && comment.getContent().length() > 0) {
+            commentRepository.save(comment);
+            postRepository.addCommentToPost(comment);
+            return comment;
+        } else {
+            throw new NullPointerException();
+        }
     }
 }

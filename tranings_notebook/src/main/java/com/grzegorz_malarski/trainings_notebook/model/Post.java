@@ -42,8 +42,23 @@ public class Post {
     private List<Comment> comments = new ArrayList<>();
 
     public Post addComment(Comment comment) {
-        comment.setPost(this);
-        this.comments.add(comment);
+        for (Comment commentToAdd : comments) {
+            if(commentToAdd.getId() == comment.getId()) {
+                throw new RuntimeException();
+            }
+            else {
+                comment.setPost(this);
+                this.comments.add(comment);
+            }
+        }
+
         return this;
+    }
+    public boolean removeComment(Comment comment) {
+        if (comments.contains(comment)) {
+            this.comments.remove(comment);
+            return true;
+        }
+        return false;
     }
 }
