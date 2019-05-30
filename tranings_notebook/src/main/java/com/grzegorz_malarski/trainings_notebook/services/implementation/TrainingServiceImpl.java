@@ -65,14 +65,10 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     public void addExercise(Exercise exercise) {
-
+        if(exercise != null) {
+            trainingRepository.
+        }
         
     }
 
-
-//    @Override
-//    public Training findByName(String name) {
-//        Training training = trainingRepository.findByName(name);
-//        return training;
-//    }
 }

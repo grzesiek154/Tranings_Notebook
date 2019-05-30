@@ -1,8 +1,10 @@
 package com.grzegorz_malarski.trainings_notebook.controllers;
 
+import com.grzegorz_malarski.trainings_notebook.model.Comment;
 import com.grzegorz_malarski.trainings_notebook.model.Post;
 import com.grzegorz_malarski.trainings_notebook.services.implementation.PostServiceImpl;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +39,7 @@ public class PostController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Post> getPostNyId(@PathVariable Long id) {
+    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
         Post post = postService.findById(id);
 
         return new ResponseEntity<>(post, HttpStatus.OK);
@@ -53,6 +55,27 @@ public class PostController {
         return new ResponseEntity<>(savedPost, HttpStatus.OK);
     }
 
-    //public ResponseEntity<Void> delete()
+    @DeleteMapping(value = "/{postId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Void> deleteById(@PathVariable Long postId) {
+        Post post = postService.findById(postId);
+
+        if(post != null) {
+            postService.deleteById(postId);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping(path = "/add_comment")
+    public ResponseEntity<Comment> addCommentToPost(@RequestBody Comment comment,BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()){
+            throw new ValidationException();
+        }
+
+        postService.addCommentToPost(comment);
+
+        return new ResponseEntity<>(comment,HttpStatus.OK);
+    }
 
 }

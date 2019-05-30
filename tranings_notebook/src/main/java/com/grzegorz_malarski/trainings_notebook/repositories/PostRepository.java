@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface PostRepository extends CrudRepository<Post, Long> {
 
     Optional<Post> findByTitle(String title);
-    Comment addCommentToPost(Comment comment);
+    Post addCommentToPost(Comment comment);
 }
