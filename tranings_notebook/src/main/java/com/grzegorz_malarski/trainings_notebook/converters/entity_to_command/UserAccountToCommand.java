@@ -12,12 +12,12 @@ public class UserAccountToCommand implements Converter<UserAccount, UserAccountC
 
     private final NotebookToCommand notebookToCommandConverter;
     private final CommentToCommand commentToCommandConverter;
-    private final TrainingsCalendarToCommand trainingsCalendarToCommandConverter;
 
-    public UserAccountToCommand(NotebookToCommand notebookToCommandConverter, CommentToCommand commentToCommandConverter, TrainingsCalendarToCommand trainingsCalendarToCommandConverter) {
+
+    public UserAccountToCommand(NotebookToCommand notebookToCommandConverter, CommentToCommand commentToCommandConverter) {
         this.notebookToCommandConverter = notebookToCommandConverter;
         this.commentToCommandConverter = commentToCommandConverter;
-        this.trainingsCalendarToCommandConverter = trainingsCalendarToCommandConverter;
+
     }
 
     @Synchronized
@@ -45,9 +45,7 @@ public class UserAccountToCommand implements Converter<UserAccount, UserAccountC
         if(source.getComments() != null && source.getComments().size() > 0) {
             source.getComments().forEach(comment -> userAccountCommand.getComments().add(commentToCommandConverter.convert(comment)));
         }
-        if(source.getCalendarsWithTrainings() != null && source.getCalendarsWithTrainings().size() > 0) {
-            source.getCalendarsWithTrainings().forEach(trainingsCalendar -> userAccountCommand.getCalendarsWithTrainings().add(trainingsCalendarToCommandConverter.convert(trainingsCalendar)));
-        }
+
 
         return userAccountCommand;
     }

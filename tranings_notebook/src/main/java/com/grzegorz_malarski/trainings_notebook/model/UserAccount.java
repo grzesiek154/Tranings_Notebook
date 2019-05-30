@@ -26,15 +26,15 @@ public class UserAccount extends BaseAppAccount {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private List<Notebook> notebooks = new ArrayList<>();
-
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "users_calendars",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "calendar_id"))
-    private Set<TrainingsCalendar> calendarsWithTrainings = new HashSet<>();
+//
+//    @ManyToMany(cascade = {
+//            CascadeType.PERSIST,
+//            CascadeType.MERGE
+//    })
+//    @JoinTable(name = "users_calendars",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "calendar_id"))
+//    private Set<TrainingsCalendar> calendarsWithTrainings = new HashSet<>();
 
     public UserAccount addNotebook(Notebook notebook) {
         notebooks.add(notebook);

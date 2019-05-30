@@ -11,12 +11,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "calendars")
+
 public class TrainingsCalendar {
 
     @Id
@@ -42,11 +37,11 @@ public class TrainingsCalendar {
     @ManyToMany(mappedBy = "calendarsWithTrainings")
     private UserAccount user;
 
-    public TrainingsCalendar addTrainingToCalendar(Training training) {
-        training.getTrainingsInCalendar().add(this);
-        this.trainings.add(training);
-
-        return this;
-    }
+//    public TrainingsCalendar addTrainingToCalendar(Training training) {
+//        training.getTrainingsInCalendar().add(this);
+//        this.trainings.add(training);
+//
+//        return this;
+//    }
 
 }

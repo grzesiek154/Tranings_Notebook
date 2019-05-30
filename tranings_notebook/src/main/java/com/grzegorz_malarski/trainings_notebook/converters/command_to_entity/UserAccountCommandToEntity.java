@@ -9,12 +9,10 @@ import org.springframework.stereotype.Component;
 public class UserAccountCommandToEntity implements Converter<UserAccountCommand, UserAccount> {
 
     private final NotebookCommandToEntity notebookCommandConverter;
-    private final TrainingsCalendarCommandToEntity trainingsCalendarCommandConverter;
     private final CommentCommandToEntity commentCommandConverter;
 
-    public UserAccountCommandToEntity(NotebookCommandToEntity notebookCommandConverter, TrainingsCalendarCommandToEntity trainingsCalendarCommandConverter, CommentCommandToEntity commentCommandConverter) {
+    public UserAccountCommandToEntity(NotebookCommandToEntity notebookCommandConverter,  CommentCommandToEntity commentCommandConverter) {
         this.notebookCommandConverter = notebookCommandConverter;
-        this.trainingsCalendarCommandConverter = trainingsCalendarCommandConverter;
         this.commentCommandConverter = commentCommandConverter;
     }
 
@@ -41,9 +39,7 @@ public class UserAccountCommandToEntity implements Converter<UserAccountCommand,
             source.getNotebooks().forEach(notebookCommand -> user.getNotebooks().add(notebookCommandConverter.convert(notebookCommand)));
         }
 
-        if (source.getCalendarsWithTrainings() != null && source.getCalendarsWithTrainings().size() > 0) {
-            source.getCalendarsWithTrainings().forEach(calendarCommand -> user.getCalendarsWithTrainings().add(trainingsCalendarCommandConverter.convert(calendarCommand)));
-        }
+
         if (source.getComments() != null && source.getComments().size() > 0) {
             source.getComments().forEach(commentCommand -> user.getComments().add(commentCommandConverter.convert(commentCommand)));
         }

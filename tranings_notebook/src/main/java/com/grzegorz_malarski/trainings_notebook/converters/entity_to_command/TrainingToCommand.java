@@ -12,12 +12,12 @@ public class TrainingToCommand implements Converter<Training, TrainingCommand> {
 
     private final TrainingCategoryToCommand trainingCategoryToCommandConverter;
     private final ExerciseToCommand exerciseToCommandConverter;
-    private final TrainingsCalendarToCommand trainingsCalendarToCommandConverter;
 
-    public TrainingToCommand(TrainingCategoryToCommand trainingCategoryToCommandConverter, ExerciseToCommand exerciseToCommandConverter, TrainingsCalendarToCommand trainingsCalendarToCommandConverter) {
+
+    public TrainingToCommand(TrainingCategoryToCommand trainingCategoryToCommandConverter, ExerciseToCommand exerciseToCommandConverter) {
         this.trainingCategoryToCommandConverter = trainingCategoryToCommandConverter;
         this.exerciseToCommandConverter = exerciseToCommandConverter;
-        this.trainingsCalendarToCommandConverter = trainingsCalendarToCommandConverter;
+
     }
 
     @Synchronized
@@ -41,9 +41,7 @@ public class TrainingToCommand implements Converter<Training, TrainingCommand> {
         if(source.getExercises() != null && source.getExercises().size() > 0) {
             source.getExercises().forEach(exercise -> trainingCommand.getExercises().add(exerciseToCommandConverter.convert(exercise)));
         }
-        if(source.getTrainingsInCalendar() != null && source.getTrainingsInCalendar().size() > 0) {
-            source.getTrainingsInCalendar().forEach(trainingsCalendar -> trainingCommand.getTrainingsCalendars().add(trainingsCalendarToCommandConverter.convert(trainingsCalendar)));
-        }
+
 
 
 

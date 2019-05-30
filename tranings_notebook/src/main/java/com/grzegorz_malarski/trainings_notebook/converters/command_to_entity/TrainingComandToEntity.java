@@ -11,13 +11,13 @@ public class TrainingComandToEntity implements Converter<TrainingCommand, Traini
 
     private final TrainingCategoryCommandToEntity trainingCategoryCommandConverter;
     private final ExerciseCommandToEntity exerciseCommandConverter;
-    private final TrainingsCalendarCommandToEntity trainingsCalendarCommandConverter;
 
-    public TrainingComandToEntity(TrainingCategoryCommandToEntity trainingCategoryCommandConverter, ExerciseCommandToEntity exerciseCommandConverter, TrainingsCalendarCommandToEntity trainingsCalendarCommandConverter) {
+
+    public TrainingComandToEntity(TrainingCategoryCommandToEntity trainingCategoryCommandConverter, ExerciseCommandToEntity exerciseCommandConverter) {
         this.trainingCategoryCommandConverter = trainingCategoryCommandConverter;
         this.exerciseCommandConverter = exerciseCommandConverter;
 
-        this.trainingsCalendarCommandConverter = trainingsCalendarCommandConverter;
+
     }
 
     @Override
@@ -39,9 +39,7 @@ public class TrainingComandToEntity implements Converter<TrainingCommand, Traini
         if (source.getExercises() != null && source.getExercises().size() > 0) {
             source.getExercises().forEach(exerciseCommand -> training.getExercises().add(exerciseCommandConverter.convert(exerciseCommand)));
         }
-        if (source.getTrainingsCalendars() != null && source.getTrainingsCalendars().size() > 0) {
-            source.getTrainingsCalendars().forEach(trainingsCalendarCommand -> training.getTrainingsInCalendar().add(trainingsCalendarCommandConverter.convert(trainingsCalendarCommand)));
-        }
+
         return training;
     }
 }

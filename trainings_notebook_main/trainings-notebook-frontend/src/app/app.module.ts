@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NotebookComponent } from './components/notebook/notebook.component';
 import { TrainingComponent } from './components/training/training.component';
 import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
     NotebookComponent,
     TrainingComponent,
     HomeComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

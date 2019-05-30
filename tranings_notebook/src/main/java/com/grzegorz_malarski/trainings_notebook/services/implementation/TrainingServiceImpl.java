@@ -64,11 +64,8 @@ public class TrainingServiceImpl implements TrainingService {
         trainingRepository.deleteById(aLong);
     }
 
-    public void addExercise(Exercise exercise) {
-        if(exercise != null) {
-            trainingRepository.
-        }
+
         
     }
 
-}
+

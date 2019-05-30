@@ -52,6 +52,6 @@ public class Training {
             inverseJoinColumns = @JoinColumn(name = "exercise_id"))
     private Set<Exercise> exercises = new HashSet<>();
 
-    @ManyToMany(mappedBy = "trainings")
-    private Set<TrainingsCalendar> trainingsInCalendar = new HashSet<>();
+//    @ManyToMany(mappedBy = "trainings")
+//    private Set<TrainingsCalendar> trainingsInCalendar = new HashSet<>();
 }
