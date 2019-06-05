@@ -10,7 +10,7 @@ export class NotebookService {
 
   private BASE_URL = "http:localhost:8082/api/notebooks";
   private GET_ALL_NOTEBOOKS = `${this.BASE_URL}\\all`;
-  private GET_NOTEBOOK_ID = this.BASE_URL;
+  private GET_NOTEBOOK_BY_ID = this.BASE_URL;
   private SAVE_UPDATE_NOTEBOOK = this.BASE_URL;
   private DELETE_NOTEBOOK = this.BASE_URL;
 
@@ -28,5 +28,8 @@ export class NotebookService {
   deleteNotebook(id:string): Observable<any> {
 
     return this.http.delete(this.DELETE_NOTEBOOK + id);
+  }
+  getNotebookById(id:string): Observable<Notebook> {
+    return this.http.get<Notebook[]>(this.GET_NOTEBOOK_BY_ID + id);
   }
 }
