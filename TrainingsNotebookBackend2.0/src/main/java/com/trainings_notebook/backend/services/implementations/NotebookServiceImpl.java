@@ -5,6 +5,8 @@ import com.trainings_notebook.backend.model.Notebook;
 import com.trainings_notebook.backend.services.NotebookService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -19,31 +21,36 @@ public class NotebookServiceImpl implements NotebookService {
 
     @Override
     public Notebook findByName(String name) {
-        return null;
+
+        return notebookRepository.findByName(name).orElseThrow();
     }
 
     @Override
     public Set<Notebook> findAll() {
-        return null;
+        Set<Notebook> notebooks = new HashSet<>();
+        notebookRepository.findAll().forEach(notebooks::add);
+
+        return notebooks;
     }
 
     @Override
-    public Notebook findById(Long aLong) {
-        return null;
+    public Notebook findById(Long id) {
+        return notebookRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public Notebook save(Notebook object) {
-        return null;
-    }
-
-    @Override
-    public void delete(Notebook object) {
+    public Notebook save(Notebook notebook) {
+        return notebookRepository.save(notebook);
 
     }
 
     @Override
-    public void deleteById(Long aLong) {
+    public void delete(Notebook notebook) {
+        notebookRepository.delete(notebook);
+    }
 
+    @Override
+    public void deleteById(Long id) {
+        notebookRepository.deleteById(id);
     }
 }
