@@ -1,10 +1,13 @@
 package com.trainings_notebook.backend.dao;
 
-import com.grzegorz_malarski.trainings_notebook.model.Training;
-import com.grzegorz_malarski.trainings_notebook.repositories.custom_repositories.CustomTrainingRepo;
+import com.trainings_notebook.backend.model.Training;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface TrainingRepository extends CrudRepository<Training, Long>, CustomTrainingRepo {
+public interface TrainingRepository extends CrudRepository<Training, Long> {
+
+    Optional<Training> findByName(String name);
 }

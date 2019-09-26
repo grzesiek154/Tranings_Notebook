@@ -1,6 +1,7 @@
 package com.trainings_notebook.backend.dao;
 
-import com.grzegorz_malarski.trainings_notebook.model.Post;
+
+import com.trainings_notebook.backend.model.Post;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

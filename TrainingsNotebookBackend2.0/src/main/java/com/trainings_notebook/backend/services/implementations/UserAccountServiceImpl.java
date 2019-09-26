@@ -3,11 +3,13 @@ package com.trainings_notebook.backend.services.implementations;
 import com.trainings_notebook.backend.dao.UserAccountRepository;
 import com.trainings_notebook.backend.model.UserAccount;
 import com.trainings_notebook.backend.services.UserAccountService;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Service
 public class UserAccountServiceImpl implements UserAccountService {
 
    private final UserAccountRepository userAccountRepository;
@@ -37,23 +39,24 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public UserAccount findById(Long aLong) {
-        return null;
+    public UserAccount findById(Long id) {
+        return userAccountRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public UserAccount save(UserAccount object) {
-        return null;
-    }
-
-    @Override
-    public void delete(UserAccount object) {
+    public UserAccount save(UserAccount account) {
+        return userAccountRepository.save(account);
 
     }
 
     @Override
-    public void deleteById(Long aLong) {
+    public void delete(UserAccount account) {
+        userAccountRepository.delete(account);
+    }
 
+    @Override
+    public void deleteById(Long id) {
+        userAccountRepository.deleteById(id);
     }
 
 }
