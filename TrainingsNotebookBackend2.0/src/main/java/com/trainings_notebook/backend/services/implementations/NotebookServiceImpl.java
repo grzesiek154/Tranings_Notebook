@@ -22,7 +22,7 @@ public class NotebookServiceImpl implements NotebookService {
     @Override
     public Notebook findByName(String name) {
 
-        return notebookRepository.findByName(name).orElseThrow();
+        return notebookRepository.findByName(name).orElse(null);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class NotebookServiceImpl implements NotebookService {
 
     @Override
     public Notebook findById(Long id) {
-        return notebookRepository.findById(id).orElseThrow();
+        return notebookRepository.findById(id).orElse(null);
     }
 
     @Override
