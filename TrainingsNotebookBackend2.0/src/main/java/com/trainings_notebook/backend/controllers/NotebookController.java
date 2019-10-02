@@ -45,7 +45,7 @@ public class NotebookController {
         return new ResponseEntity<>(notebooks, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/byName", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/byName/{name}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Notebook> getNotebookByName(@PathVariable String name) {
 
         Notebook notebook = notebookService.findByName(name);

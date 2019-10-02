@@ -43,8 +43,11 @@ public class ExerciseController {
     public ResponseEntity<Exercise> save(@RequestBody @Valid Exercise exercise, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()) {
-            
+            return new ResponseEntity<>(exercise, HttpStatus.BAD_REQUEST);
         }
+        exerciseService.save(exercise);
+
+        return new ResponseEntity<>(exercise, HttpStatus.OK);
     }
 
 }

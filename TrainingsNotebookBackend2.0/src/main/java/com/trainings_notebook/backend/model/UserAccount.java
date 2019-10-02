@@ -1,6 +1,8 @@
 package com.trainings_notebook.backend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +26,7 @@ public class UserAccount extends BaseAppAccount {
 
 
     private double height;
+
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private List<Notebook> notebooks = new ArrayList<>();
