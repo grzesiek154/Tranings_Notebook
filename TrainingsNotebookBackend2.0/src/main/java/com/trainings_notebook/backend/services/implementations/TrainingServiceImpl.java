@@ -3,10 +3,12 @@ package com.trainings_notebook.backend.services.implementations;
 import com.trainings_notebook.backend.dao.TrainingRepository;
 import com.trainings_notebook.backend.model.Training;
 import com.trainings_notebook.backend.services.TrainingService;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class TrainingServiceImpl implements TrainingService {
 
     private final TrainingRepository trainingRepository;

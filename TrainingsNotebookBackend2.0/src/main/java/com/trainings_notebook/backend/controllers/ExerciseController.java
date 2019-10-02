@@ -40,6 +40,7 @@ public class ExerciseController {
         return new ResponseEntity<>(exercise, HttpStatus.OK);
     }
 
+    @PostMapping
     public ResponseEntity<Exercise> save(@RequestBody @Valid Exercise exercise, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()) {
@@ -48,6 +49,26 @@ public class ExerciseController {
         exerciseService.save(exercise);
 
         return new ResponseEntity<>(exercise, HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> delete(@RequestBody @Valid Exercise exercise, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+        exerciseService.delete(exercise);
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+
+        Exercise exercise = exerciseService.findById(id);
+        if(exercise == null) {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
 }

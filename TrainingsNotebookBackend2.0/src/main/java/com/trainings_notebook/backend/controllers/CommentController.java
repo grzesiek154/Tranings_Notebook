@@ -58,23 +58,23 @@ public class CommentController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Comment> delete(@RequestBody @Valid Comment comment, BindingResult bindingResult) {
+    public ResponseEntity<Void> delete(@RequestBody @Valid Comment comment, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()) {
-            return new ResponseEntity<>(comment, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         commentService.delete(comment);
-        return new ResponseEntity<>(comment, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping(value = "deleteById/{id}")
-    public ResponseEntity<Comment> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
 
         Comment comment = commentService.findById(id);
         if(comment == null) {
-            return new ResponseEntity<>(comment, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         commentService.delete(comment);
-        return new ResponseEntity<>(comment, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

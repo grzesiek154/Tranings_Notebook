@@ -1,7 +1,9 @@
 package com.trainings_notebook.backend.controllers;
 
-import com.trainings_notebook.backend.model.Notebook;
-import com.trainings_notebook.backend.services.NotebookService;
+
+import com.trainings_notebook.backend.model.Post;
+import com.trainings_notebook.backend.services.PostService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,33 +14,31 @@ import javax.validation.Valid;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("api/notebooks")
-public class NotebookController {
+@RequestMapping("api/posts")
+public class PostController {
 
-    private final NotebookService notebookService;
+    private final PostService postService;
 
-
-    public NotebookController(NotebookService notebookService) {
-        this.notebookService = notebookService;
+    public PostController(PostService postService) {
+        this.postService = postService;
     }
 
-
     @GetMapping(value = "/byId/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Notebook> getById(@PathVariable Long id) {
+    public ResponseEntity<Post> getById(@PathVariable Long id) {
 
-        Notebook notebook = notebookService.findById(id);
+        Post post = postService.findById(id);
 
-        if(notebook == null) {
+        if(post == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(notebook,HttpStatus.OK);
+        return new ResponseEntity<>(post,HttpStatus.OK);
     }
 
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Collection<Notebook>> getAllNotebooks() {
+    public ResponseEntity<Collection<Post>> getAllPosts() {
 
-        Collection<Notebook> notebooks = notebookService.findAll();
+        Collection<Post> notebooks = postService.findAll();
         if(notebooks.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -46,43 +46,43 @@ public class NotebookController {
     }
 
     @GetMapping(value = "/byName/{name}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Notebook> getNotebookByName(@PathVariable String name) {
+    public ResponseEntity<Post> getPostByTitle(@PathVariable String title) {
 
-        Notebook notebook = notebookService.findByName(name);
-        if(notebook == null) {
+        Post post = postService.findByTitle(title);
+        if(post == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(notebook,HttpStatus.OK);
+        return new ResponseEntity<>(post,HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Notebook> save(@RequestBody @Valid Notebook notebook, BindingResult bindingResult) {
-
-        if(bindingResult.hasErrors()) {
-            return new ResponseEntity<>(notebook, HttpStatus.BAD_REQUEST);
-        }
-        notebookService.save(notebook);
-        return new ResponseEntity<>(notebook, HttpStatus.OK);
-    }
-
-    @DeleteMapping
-    public ResponseEntity<Void> delete(@RequestBody @Valid Notebook notebook, BindingResult bindingResult) {
+    public ResponseEntity<Post> save(@RequestBody @Valid Post post, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        notebookService.delete(notebook);
+        postService.save(post);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> delete(@RequestBody @Valid Post post, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        postService.delete(post);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping(value = "deleteById/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
 
-        Notebook notebook = notebookService.findById(id);
-        if(notebook == null) {
+        Post post = postService.findById(id);
+        if(post == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        notebookService.delete(notebook);
+        postService.delete(post);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
