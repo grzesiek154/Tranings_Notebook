@@ -45,4 +45,9 @@ public class TrainerAccountServiceImpl implements TrainerAccountService {
         trainerAccountRepository.deleteById(aLong);
 
     }
+
+    @Override
+    public TrainerAccount findByName(String name) {
+        return null;
+    }
 }

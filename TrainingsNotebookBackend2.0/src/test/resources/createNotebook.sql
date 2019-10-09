@@ -1,5 +1,4 @@
-INSERT INTO NOTEBOOKS
-values (4,
-        "cardio",
-        "cardio trainings",
-        1);
+
+
+
+# INSERT INTO NOTEBOOKS values (4, "cardio", "cardio trainings", 1);

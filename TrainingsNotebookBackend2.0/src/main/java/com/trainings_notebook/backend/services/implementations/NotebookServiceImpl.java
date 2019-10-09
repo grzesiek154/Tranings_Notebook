@@ -5,6 +5,7 @@ import com.trainings_notebook.backend.model.Notebook;
 import com.trainings_notebook.backend.services.NotebookService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,6 +24,15 @@ public class NotebookServiceImpl implements NotebookService {
     public Notebook findByName(String name) {
 
         return notebookRepository.findByName(name).orElse(null);
+    }
+
+    @Override
+    public List<String> getAllUserNotebooks(Long id) {
+
+        List<Notebook> notebooks = new ArrayList<>();
+
+
+        return null;
     }
 
     @Override
@@ -53,4 +63,6 @@ public class NotebookServiceImpl implements NotebookService {
     public void deleteById(Long id) {
         notebookRepository.deleteById(id);
     }
+
+
 }
