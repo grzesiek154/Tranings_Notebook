@@ -6,11 +6,13 @@ import com.trainings_notebook.backend.model.Notebook;
 import com.trainings_notebook.backend.model.UserAccount;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@Profile("default")
 public class BootstrapMySqlData implements ApplicationListener<ContextRefreshedEvent> {
 
     private final UserAccountRepository userAccountRepository;
@@ -66,5 +68,11 @@ public class BootstrapMySqlData implements ApplicationListener<ContextRefreshedE
         notebook3.setNote("legs trainings");
         notebook3.setUser(user1);
         notebookRepository.save(notebook3);
+
+        Notebook notebook4 = new Notebook();
+        notebook4.setName("notebook3");
+        notebook4.setNote("legs trainings");
+        notebook4.setUser(user1);
+        notebookRepository.save(notebook4);
     }
 }

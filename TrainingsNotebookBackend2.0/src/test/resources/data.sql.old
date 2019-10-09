@@ -1,0 +1,2 @@
+# insert into notebooks (notebook_id, user_id, name, note)  values (8, 1, 'test','jakis opis');
+# insert into notebooks (notebook_id ,name ,note ,user_id)  values (8, 'test','jakis opis',1);
