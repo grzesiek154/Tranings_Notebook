@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "app_users")
+@Table(name = "users_accounts")
 public class UserAccount extends BaseAppAccount {
 
     private String nickname;

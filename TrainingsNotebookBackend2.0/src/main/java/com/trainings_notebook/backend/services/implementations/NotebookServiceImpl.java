@@ -29,10 +29,9 @@ public class NotebookServiceImpl implements NotebookService {
     @Override
     public List<String> getAllUserNotebooks(Long id) {
 
-        List<Notebook> notebooks = new ArrayList<>();
-
-
-        return null;
+        List<String> notebooks = new ArrayList<>();
+        notebookRepository.getAllUserNotebooks(id).forEach(notebooks::add);
+        return notebooks;
     }
 
     @Override

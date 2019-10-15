@@ -5,6 +5,7 @@ import com.trainings_notebook.backend.model.Notebook;
 import com.trainings_notebook.backend.model.UserAccount;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.aspectj.weaver.ast.Not;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,6 +23,8 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -32,42 +35,34 @@ public class NotebookRepositoryTest {
 
 //    Logger logger = LogManager.getLogger(getClass());
 //
+
+    String NOTEBOOK_NAME = "janek notebook";
+    String NOTEBOOK_NAME2 = "notebook2";
+    String NOTEBOOK_NAME3 = "notebook3";
+
     @Autowired
     private NotebookRepository notebookRepository;
     @Autowired
     private UserAccountRepository userAccountRepository;
 
-    @Before
-    public void setUp() throws Exception {
-        UserAccount user1 = new UserAccount();
-        user1.setNickname("janek123");
-        user1.setName("Jan");
-        user1.setSurname("Kowalski");
-        user1.setEmail("jan@gmail.com");
-        user1.setPassword("asdzxcqwe");
-        userAccountRepository.save(user1);
 
-        Notebook notebook2 = new Notebook();
-        notebook2.setName("test");
-        notebook2.setNote("shoulders trainings");
-        notebook2.setUser(user1);
-        notebookRepository.save(notebook2);
-    }
 
     @Test
     public void getAllUserNotebooks() {
-        
-    }
+        List<String> notebooks = new ArrayList<>();
+        notebookRepository.getAllUserNotebooks(1L).forEach(notebooks::add);
 
-    @Test
-    public void findAllByUserId() {
+        assertNotNull(notebooks);
+        assertEquals(NOTEBOOK_NAME, notebooks.get(0));
+        assertEquals(NOTEBOOK_NAME2, notebooks.get(1));
+        assertEquals(NOTEBOOK_NAME3, notebooks.get(2));
     }
 
     @Test
     public void findByName() {
 
-        Optional<Notebook> notebook = notebookRepository.findByName("test");
+        Optional<Notebook> notebook = notebookRepository.findByName(NOTEBOOK_NAME);
         assertNotNull(notebook);
-        assertEquals("test", notebook.get().getName());
+        assertEquals(NOTEBOOK_NAME, notebook.get().getName());
     }
 }

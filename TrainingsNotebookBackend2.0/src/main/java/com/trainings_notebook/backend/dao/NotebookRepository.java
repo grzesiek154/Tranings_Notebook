@@ -15,8 +15,7 @@ import java.util.Optional;
 public interface NotebookRepository extends CrudRepository<Notebook, Long> {
 
     Optional<Notebook> findByName(String name);
-    //@Query(value = "select name from notebooks where user_id = :userId", nativeQuery = true)
-    //Optional<List<String>> getAllUserNotebooks(@Param("userId")Long userId);
-    //Optional<List<Notebook>> getAllUserNotebooks(Long id);
-    Optional<List<String>> findAllByUserId(Long userId);
+    @Query(value = "select name from notebooks where user_id = :userId", nativeQuery = true)
+    Iterable<String> getAllUserNotebooks(@Param("userId")Long userId);
+
 }

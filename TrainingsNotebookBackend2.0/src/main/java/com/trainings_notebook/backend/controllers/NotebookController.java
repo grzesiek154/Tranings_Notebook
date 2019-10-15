@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/notebooks")
@@ -42,6 +43,17 @@ public class NotebookController {
         if(notebooks.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(notebooks, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/allByUserId/{id}")
+    public ResponseEntity<Collection<String>> getAllNotebooksByUserId(@PathVariable Long id) {
+
+        Collection<String> notebooks = notebookService.getAllUserNotebooks(id);
+        if(notebooks.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         return new ResponseEntity<>(notebooks, HttpStatus.OK);
     }
 

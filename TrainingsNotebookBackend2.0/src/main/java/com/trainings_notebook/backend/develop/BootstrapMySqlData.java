@@ -1,7 +1,9 @@
 package com.trainings_notebook.backend.develop;
 
+import com.trainings_notebook.backend.dao.ExerciseRepository;
 import com.trainings_notebook.backend.dao.NotebookRepository;
 import com.trainings_notebook.backend.dao.UserAccountRepository;
+import com.trainings_notebook.backend.model.Exercise;
 import com.trainings_notebook.backend.model.Notebook;
 import com.trainings_notebook.backend.model.UserAccount;
 import lombok.extern.slf4j.Slf4j;
@@ -17,11 +19,13 @@ public class BootstrapMySqlData implements ApplicationListener<ContextRefreshedE
 
     private final UserAccountRepository userAccountRepository;
     private final NotebookRepository notebookRepository;
+    private final ExerciseRepository exerciseRepository;
     private UserAccount user1;
 
-    public BootstrapMySqlData(UserAccountRepository userAccountRepository, NotebookRepository notebookRepository) {
+    public BootstrapMySqlData(UserAccountRepository userAccountRepository, NotebookRepository notebookRepository, ExerciseRepository exerciseRepository) {
         this.userAccountRepository = userAccountRepository;
         this.notebookRepository = notebookRepository;
+        this.exerciseRepository = exerciseRepository;
     }
 
     @Override
@@ -74,5 +78,11 @@ public class BootstrapMySqlData implements ApplicationListener<ContextRefreshedE
         notebook4.setNote("legs trainings");
         notebook4.setUser(user1);
         notebookRepository.save(notebook4);
+
+        Exercise exercise = new Exercise();
+        exercise.setId(1L);
+        exercise.setName("pullups");
+        exercise.setDescription("this is pullup workouts");
+        exerciseRepository.save(exercise);
     }
 }

@@ -11,5 +11,4 @@ public interface NotebookService extends CrudService<Notebook,Long>{
 
     Notebook findByName(String name);
     List<String> getAllUserNotebooks(Long id);
-
 }
