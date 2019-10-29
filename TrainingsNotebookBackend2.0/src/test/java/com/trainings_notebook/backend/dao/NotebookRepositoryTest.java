@@ -30,7 +30,7 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BackendApplication.class)
+@DataJpaTest
 public class NotebookRepositoryTest {
 
 //    Logger logger = LogManager.getLogger(getClass());

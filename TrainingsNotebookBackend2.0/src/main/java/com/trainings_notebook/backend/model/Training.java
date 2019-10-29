@@ -27,7 +27,7 @@ public class Training {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    @NotBlank
+    @NotNull
     private TrainerAccount author;
 
     @NotBlank

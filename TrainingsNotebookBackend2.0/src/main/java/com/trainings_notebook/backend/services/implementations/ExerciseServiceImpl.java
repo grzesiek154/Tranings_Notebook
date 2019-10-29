@@ -3,6 +3,7 @@ package com.trainings_notebook.backend.services.implementations;
 import com.trainings_notebook.backend.dao.ExerciseRepository;
 import com.trainings_notebook.backend.model.Exercise;
 import com.trainings_notebook.backend.services.ExerciseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -11,12 +12,16 @@ import java.util.Set;
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
 
-    private final ExerciseRepository exerciseRepository;
+    @Autowired
+    private  ExerciseRepository exerciseRepository;
 
     public ExerciseServiceImpl(ExerciseRepository exerciseRepository) {
         this.exerciseRepository = exerciseRepository;
     }
 
+
+    public ExerciseServiceImpl() {
+    }
 
     @Override
     public Exercise findByName(String nickname) {

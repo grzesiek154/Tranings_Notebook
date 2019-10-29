@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class Post {
     @JoinColumn(name = "user_id")
     private TrainerAccount author;
 
-    @NotBlank
+    @NotNull
     @Column(name = "create_date")
     private LocalDate createDate;
 
